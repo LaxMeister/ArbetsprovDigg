@@ -1,3 +1,7 @@
+<!--
+Denna Vue-komponent, UpdateModal.vue är en modal-komponent för att uppdatera informationen om en kund.
+-->
+
 <template>
   <div v-if="modelValue" class="modal-overlay" @click="closeModal">
     <div class="modal-content" @click.stop>
@@ -49,7 +53,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:modelValue", "save"]);
+const emit = defineEmits(["update:modelValue", "save"]); // Emit-funktioner för att kommunicera med föräldern
 
 const formData = ref({
   id: null,
@@ -59,21 +63,21 @@ const formData = ref({
   telephone: "",
 });
 
-// Watch for changes in itemData and update form
+// Watch för att uppdatera formData när itemData ändras
 watch(
   () => props.itemData,
   (newValue) => {
-    formData.value = { ...newValue };
+    formData.value = { ...newValue }; // Kopiera nya värden till formData
   },
-  { immediate: true }
+  { immediate: true } // Kör vid första uppdatering
 );
 
 const closeModal = () => {
-  emit("update:modelValue", false);
+  emit("update:modelValue", false); // Stänger modal genom att uppdatera modelValue
 };
 
 const handleSubmit = () => {
-  emit("save", formData.value);
+  emit("save", formData.value); // Emitera sparade data till föräldern
   closeModal();
 };
 </script>

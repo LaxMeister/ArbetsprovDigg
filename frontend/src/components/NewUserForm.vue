@@ -1,3 +1,7 @@
+<!--
+Denna Vue-komponent, NewUserForm.vue är en formulär-komponent för att lägga till en ny kund.
+-->
+
 <template>
     <div class="form-wrapper">
         <form @submit.prevent="submitForm">

@@ -1,3 +1,11 @@
+<!--
+Denna Vue-komponent, DataTable.vue, används för att visa en tabell med Kunddata, dvs namn, adress, e-post och telefonnummer. 
+Den tillhandahåller funktioner för paginering, vilket gör det möjligt att visa en begränsad mängd data per sida och navigera mellan dem. 
+Användarna kan uppdatera eller ta bort kunder via modaler som öppnas när respektive knapp klickas. 
+Modalerna hanteras av UpdateModal och DeleteModal-komponenterna. 
+Vid uppdatering och radering av objekt skickar komponenten lämpliga förfrågningar till en backend-API och uppdaterar UI baserat på svaren från servern.
+-->
+
 <template>
   <div class="table-wrapper">
     <table class="fl-table">
@@ -121,7 +129,7 @@ const handleUpdate = async (updatedItem) => {
         name: updatedItem.name,
         address: updatedItem.address,
         email: updatedItem.email,
-        telephone: updatedItem.telephone, // Fixed property name
+        telephone: updatedItem.telephone,
       }),
     });
 
@@ -141,7 +149,7 @@ const handleUpdate = async (updatedItem) => {
 const handleDelete = async (item) => {
   if (!item) {
     console.error("No item to delete!");
-    return; // Prevent proceeding if item is undefined
+    return;
   }
 
   try {

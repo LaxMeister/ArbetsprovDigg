@@ -11,26 +11,33 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// @Service indikerar att denna klass är en tjänstkomponent som hanterar affärslogik.
+// Logger används för att logga information och varningar under programkörning.
 @Service
 public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
+    // @Autowired injicerar UserDao så att tjänsten kan använda DAO-metoder för att interagera med databasen.
     @Autowired
     UserDao userDao;
 
+    // Metod som hämtar och returnerar en lista med alla användare från databasen.
     public List<User> users() {
         return userDao.findAll();
     }
 
+    // Metod för att hämta en användare baserat på deras ID.
     public User findUserById(long id) {
         return userDao.findById(id);
     }
 
+    // Metod som tar emot en User-objekt, sparar det i databasen och loggar händelsen.
     public User newUser(User user) {
         logger.info("User saved: " + user.name);
         return userDao.save(user);
     }
 
+    // Metod för att uppdatera en användare. Skapar ett nytt User-objekt för att säkerställa att uppdateringen är korrekt.
     public User updateUser(User user) {
         User updatedUser = new User();
         updatedUser.setId(user.getId());
@@ -39,26 +46,26 @@ public class UserService {
         updatedUser.setEmail(user.getEmail());
         updatedUser.setTelephone(user.getTelephone());
 
-        userDao.save(updatedUser);
-        logger.info("User updated: " + updatedUser.name);
+        userDao.save(updatedUser); // Sparar det uppdaterade användarobjektet.
+        logger.info("User updated: " + updatedUser.name); // Loggar uppdateringshändelsen.
         return updatedUser;
     }
 
+    // Metod för att ta bort en användare. Kontrollerar först om användaren finns innan den raderar den.
     public String deleteUser(User user) {
-        // Find the user by ID first
+        // Hittar användaren baserat på ID.
         Optional<User> userToDelete = Optional.ofNullable(userDao.findById(user.getId()));
 
-        // Check if the user exists
+        // Kontrollerar om användaren finns.
         if (userToDelete.isPresent()) {
-            // If found, delete the user
+            // Om användaren hittas, raderas den.
             userDao.deleteById(user.getId());
             logger.info("User deleted: " + userToDelete.get().getName());
-            return userToDelete.get().getName() + " was deleted";
+            return userToDelete.get().getName() + " was deleted"; // Bekräftelsemeddelande.
         } else {
-            // If not found, return an error message or throw an exception
+            // Om användaren inte hittas, loggas en varning och ett meddelande returneras.
             logger.warn("User not found with ID: " + user.getId());
             return "User not found";
         }
     }
-
 }

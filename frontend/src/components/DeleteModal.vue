@@ -1,3 +1,7 @@
+<!--
+Denna Vue-komponent, DeleteModal.vue är en modal-komponent för att ta bort en kund.
+-->
+
 <template>
   <div v-if="modelValue" class="modal-overlay" @click="closeModal">
     <div class="modal-content" @click.stop>
@@ -21,20 +25,19 @@ const props = defineProps({
     required: true,
   },
   item: {
-    // Add the item prop to receive selectedItem
     type: Object,
     required: true,
   },
 });
 
-const emit = defineEmits(["update:modelValue", "confirm"]);
+const emit = defineEmits(["update:modelValue", "confirm"]); // Emit-funktioner för att kommunicera med föräldern
 
 const closeModal = () => {
-  emit("update:modelValue", false);
+  emit("update:modelValue", false); // Stänger modal genom att uppdatera modelValue
 };
 
 const confirmDelete = () => {
-  emit("confirm", props.item);
+  emit("confirm", props.item); // Bekräftar borttagning och skickar den valda kunden
   closeModal();
 };
 </script>
