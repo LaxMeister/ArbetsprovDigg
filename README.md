@@ -1,3 +1,7 @@
+---
+
+
+---
 
 <h1 id="arbetsprov-för-digg">Arbetsprov för DIGG</h1>
 <p>Det här projektet är en fullstack-applikation som består av en frontend byggd med <strong>Vue.js</strong> och en backend byggd med <strong>Spring Boot</strong>. Projektet är designat för att hantera användarinformation genom att kunna skapa, redigera, radera och visa användare. Det är containeriserat med <strong>Docker</strong>, vilket gör det lättare att köra applikationen utan att manuellt installera alla beroenden på din dator.</p>
@@ -45,6 +49,8 @@
 <li><strong>Spring Boot</strong> - En Java-baserad ramverk för backend som gör det enkelt att skapa REST API:er.</li>
 <li><strong>Docker</strong> - Används för att paketera applikationen i containrar, så att det är enkelt att köra applikationen utan att behöva konfigurera alla verktyg själv.</li>
 <li><strong>JUnit</strong> - Används för att skriva och köra enhetstester för backend.</li>
+<li><strong>H2 Database</strong> - En in-memory databas som används för utveckling och testning.</li>
+<li><strong>Swagger/OpenAPI</strong> - API-dokumentationsverktyg som ger en interaktiv översikt av alla tillgängliga endpoints.</li>
 </ul>
 <h2 id="förutsättningar">Förutsättningar</h2>
 <p>Innan du kan köra det här projektet behöver du ha följande installerat:</p>
@@ -75,6 +81,14 @@
 <ul>
 <li><strong>Frontend:</strong> <a href="http://localhost">http://localhost</a></li>
 <li><strong>Backend API:</strong> <a href="http://localhost:8080">http://localhost:8080</a></li>
+<li><strong>H2 Console:</strong> <a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a>
+<ul>
+<li>JDBC URL: finns i application.properties</li>
+<li>Användarnamn: sa</li>
+<li>Lösenord: password</li>
+</ul>
+</li>
+<li><strong>Swagger UI:</strong> <a href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a></li>
 </ul>
 <h4 id="stoppa-applikationen">Stoppa applikationen</h4>
 <p>För att stänga ner applikationen, tryck <code>CTRL + C</code> i terminalen där Docker Compose körs. Du kan också stänga ner alla Docker-containrar med:</p>
