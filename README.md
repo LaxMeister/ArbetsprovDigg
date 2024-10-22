@@ -1,7 +1,3 @@
----
-
-
----
 
 <h1 id="arbetsprov-för-digg">Arbetsprov för DIGG</h1>
 <p>Det här projektet är en fullstack-applikation som består av en frontend byggd med <strong>Vue.js</strong> och en backend byggd med <strong>Spring Boot</strong>. Projektet är designat för att hantera användarinformation genom att kunna skapa, redigera, radera och visa användare. Det är containeriserat med <strong>Docker</strong>, vilket gör det lättare att köra applikationen utan att manuellt installera alla beroenden på din dator.</p>
